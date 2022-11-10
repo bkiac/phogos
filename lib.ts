@@ -1,22 +1,10 @@
-export type Ok<T> = {
-	value: T
-	ok: true
-}
-
-export type Err = {
-	err: Error
-	ok: false
-}
-
-export type Result<T> = Ok<T> | Err
-
+export type Ok<V> = [V, undefined]
+export type Err<E = Error> = [undefined, E]
+export type Result<V, E = Error> = Ok<V> | Err<E>
 export type PromiseResult<T> = Promise<Result<T>>
 
-export const ok = <T>(value: T): Ok<T> => ({ok: true, value})
-export const err = <T extends Error>(error?: T): Err => ({
-	ok: false,
-	err: error ?? new Error(),
-})
+export const ok = <T>(value: T): Ok<T> => [value, undefined]
+export const err = <T extends Error>(error: T): Err => [undefined, error]
 
 export const tryCatch = <T>(fn: () => T): Result<T> => {
 	try {
