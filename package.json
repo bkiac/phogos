@@ -4,6 +4,7 @@
 	"main": "index.js",
 	"repository": "git@github.com:bkiac/ergo.git",
 	"scripts": {
+		"build": "tsx build.ts",
 		"test": "vitest",
 		"coverage": "vitest run --coverage"
 	},
