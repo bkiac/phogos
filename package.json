@@ -1,7 +1,11 @@
 {
 	"name": "phogos",
 	"version": "0.0.0",
-	"main": "index.js",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"repository": "git@github.com:bkiac/phogos.git",
 	"scripts": {
 		"build": "tsx scripts/build.ts",
