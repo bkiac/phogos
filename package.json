@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"repository": "git@github.com:bkiac/phogos.git",
 	"scripts": {
-		"build": "tsx build.ts",
+		"build": "tsx scripts/build.ts",
 		"test": "vitest",
 		"coverage": "vitest run --coverage"
 	},
