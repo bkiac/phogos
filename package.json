@@ -1,8 +1,8 @@
 {
-	"name": "ergo",
+	"name": "phogos",
 	"version": "0.0.0",
 	"main": "index.js",
-	"repository": "git@github.com:bkiac/ergo.git",
+	"repository": "git@github.com:bkiac/phogos.git",
 	"scripts": {
 		"build": "tsx build.ts",
 		"test": "vitest",
