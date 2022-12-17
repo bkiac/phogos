@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest"
-import {ph} from "./index"
+import {ph} from "../index"
 
 class CustomError extends Error {}
 
