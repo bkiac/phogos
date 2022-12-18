@@ -1,7 +1,7 @@
 import {type Result, ok, type PromiseResult} from "./core"
 import {type ErrorHandlerOptions, handleError} from "./handle-error"
 
-export const tryCatch = <V, E extends Error = Error>(fn: () => V, options?: ErrorHandlerOptions<E>): Result<V, E> => {
+export const call = <V, E extends Error = Error>(fn: () => V, options?: ErrorHandlerOptions<E>): Result<V, E> => {
 	try {
 		return ok(fn())
 	} catch (e: unknown) {
@@ -9,7 +9,7 @@ export const tryCatch = <V, E extends Error = Error>(fn: () => V, options?: Erro
 	}
 }
 
-export const tryCatchAsync = async <V, E extends Error = Error>(
+export const callAsync = async <V, E extends Error = Error>(
 	fn: () => Promise<V>,
 	options?: ErrorHandlerOptions<E>,
 ): PromiseResult<V, E> => {

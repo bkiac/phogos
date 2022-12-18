@@ -1,18 +1,18 @@
 import {describe, it, expect} from "vitest"
-import {tryCatch, tryCatchAsync} from "./try-catch"
+import {call, callAsync} from "./call"
 
-describe("tryCatch", () => {
+describe("call", () => {
 	describe("sync", () => {
 		it("should return value", () => {
 			const value = 1
-			const [v, e] = tryCatch(() => value)
+			const [v, e] = call(() => value)
 			expect(v).toBe(value)
 			expect(e).toBeUndefined()
 		})
 
 		it("should return error", () => {
 			const error = new Error("message")
-			const [v, e] = tryCatch<number>(() => {
+			const [v, e] = call<number>(() => {
 				throw error
 			})
 			expect(v).toBeUndefined()
@@ -26,14 +26,14 @@ describe("tryCatch", () => {
 	describe("async", () => {
 		it("should return value", async () => {
 			const value = 1
-			const [v, e] = await tryCatchAsync(async () => value)
+			const [v, e] = await callAsync(async () => value)
 			expect(v).toBe(value)
 			expect(e).toBeUndefined()
 		})
 
 		it("should return error", async () => {
 			const error = new Error("message")
-			const [v, e] = await tryCatchAsync<number>(() => {
+			const [v, e] = await callAsync<number>(() => {
 				throw error
 			})
 			expect(v).toBeUndefined()
