@@ -19,3 +19,8 @@ export const callAsync = async <V, E extends Error = Error>(
 		return handleError<E>(e, options)
 	}
 }
+
+export const resolve = <V, E extends Error = Error>(
+	value: Promise<V>,
+	options?: ErrorHandlerOptions<E>,
+): PromiseResult<V, E> => callAsync(() => value, options)
