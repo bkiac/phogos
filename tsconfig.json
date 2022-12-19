@@ -27,6 +27,6 @@
 		"emitDeclarationOnly": true,
 		"outDir": "dist"
 	},
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", "**/*.test.ts"],
 	"include": ["lib"]
 }
