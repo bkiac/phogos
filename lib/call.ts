@@ -23,3 +23,14 @@ export function call<V, E extends Error = Error>(fn: () => V | Promise<V>, optio
 		return handleError<E>(e, options)
 	}
 }
+
+export function callSync<V, E extends Error = Error>(fn: () => V, options?: ErrorHandlerOptions<E>): Result<V, E> {
+	return call(fn, options)
+}
+
+export async function callAsync<V, E extends Error = Error>(
+	fn: () => Promise<V>,
+	options?: ErrorHandlerOptions<E>,
+): Promise<Result<V, E>> {
+	return call(fn, options)
+}
