@@ -1,26 +1,23 @@
-import {type Result, ok, type PromiseResult} from "./core"
+import {type Result, ok} from "./core"
 import {type ErrorHandlerOptions, handleError} from "./handle-error"
+import {resolve} from "./resolve"
 
-export const call = <V, E extends Error = Error>(fn: () => V, options?: ErrorHandlerOptions<E>): Result<V, E> => {
+const isPromise = <V>(value: V | Promise<V>): value is Promise<V> =>
+	value instanceof Promise || Object.prototype.toString.call(value) === "[object Promise]"
+
+export function call<V extends Promise<any>, E extends Error = Error>(
+	fn: () => V,
+	options?: ErrorHandlerOptions<E>,
+): Promise<Result<Awaited<V>, E>>
+export function call<V, E extends Error = Error>(fn: () => V, options?: ErrorHandlerOptions<E>): Result<V, E>
+export function call<V, E extends Error = Error>(fn: () => V | Promise<V>, options?: ErrorHandlerOptions<E>) {
 	try {
-		return ok(fn())
+		const v = fn()
+		if (isPromise(v)) {
+			return resolve<V, E>(v, options)
+		}
+		return ok(v)
 	} catch (e: unknown) {
 		return handleError<E>(e, options)
 	}
 }
-
-export const callAsync = async <V, E extends Error = Error>(
-	fn: () => Promise<V>,
-	options?: ErrorHandlerOptions<E>,
-): PromiseResult<V, E> => {
-	try {
-		return ok(await fn())
-	} catch (e: unknown) {
-		return handleError<E>(e, options)
-	}
-}
-
-export const resolve = <V, E extends Error = Error>(
-	value: Promise<V>,
-	options?: ErrorHandlerOptions<E>,
-): PromiseResult<V, E> => callAsync(() => value, options)
