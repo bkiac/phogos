@@ -1,9 +1,7 @@
 import {type Result, ok} from "./core"
 import {type ErrorHandlerOptions, handleError} from "./handle-error"
+import {isPromise} from "./is-promise"
 import {resolve} from "./resolve"
-
-const isPromise = <V>(value: V | Promise<V>): value is Promise<V> =>
-	value instanceof Promise || Object.prototype.toString.call(value) === "[object Promise]"
 
 export function call<V extends Promise<any>, E extends Error = Error>(
 	fn: () => V,
