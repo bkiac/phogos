@@ -1,18 +1,20 @@
-import type {MergeExclusive} from "type-fest"
+import type {MergeExclusive, Simplify} from "type-fest"
 import {Err, err} from "./core"
 import {Panic} from "./panic"
 
-export type ErrorHandlerOptions<E extends Error> = MergeExclusive<
-	{
-		/** Default to false */
-		catchPanic?: boolean
-		/** Preprocess caught error to turn it into an Error or Panic */
-		preprocess?: (e: unknown) => Error | Panic
-	},
-	{
-		/** Override error handling process, will disregard any other option */
-		override: (e: unknown) => Err<E>
-	}
+export type ErrorHandlerOptions<E extends Error> = Simplify<
+	MergeExclusive<
+		{
+			/** Default to false */
+			catchPanic?: boolean
+			/** Preprocess caught error to turn it into an Error or Panic */
+			preprocess?: (e: unknown) => Error | Panic
+		},
+		{
+			/** Override error handling process, will disregard any other option */
+			override: (e: unknown) => Err<E>
+		}
+	>
 >
 
 export const handleError = <E extends Error>(
