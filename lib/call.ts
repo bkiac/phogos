@@ -9,7 +9,9 @@ export function call<V extends Promise<any>, E extends Error = Error>(
 	fn: () => V,
 	options?: ErrorHandlerOptions<E>,
 ): Promise<Result<Awaited<V>, E>>
+
 export function call<V, E extends Error = Error>(fn: () => V, options?: ErrorHandlerOptions<E>): Result<V, E>
+
 export function call<V, E extends Error = Error>(fn: () => V | Promise<V>, options?: ErrorHandlerOptions<E>) {
 	try {
 		const v = fn()
