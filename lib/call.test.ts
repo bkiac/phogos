@@ -1,5 +1,5 @@
 import {describe, it, expect} from "vitest"
-import {call, callAsync} from "./call"
+import {call} from "./call"
 
 describe("call", () => {
 	describe("sync", () => {
@@ -26,14 +26,14 @@ describe("call", () => {
 	describe("async", () => {
 		it("should return value", async () => {
 			const value = 1
-			const [v, e] = await callAsync(async () => value)
+			const [v, e] = await call(async () => value)
 			expect(v).toBe(value)
 			expect(e).toBeUndefined()
 		})
 
 		it("should return error", async () => {
 			const error = new Error("message")
-			const [v, e] = await callAsync<number>(() => {
+			const [v, e] = await call(async () => {
 				throw error
 			})
 			expect(v).toBeUndefined()
