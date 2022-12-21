@@ -3,8 +3,7 @@ import {isPromise} from "./is-promise"
 
 describe("isPromise", () => {
 	it("should return true for promise", () => {
-		expect(isPromise(Promise.resolve())).toBe(true)
-		expect(isPromise(Promise.reject())).toBe(true)
+		expect(isPromise(new Promise(() => {}))).toBe(true)
 	})
 
 	it("should return false for non-promise", () => {
