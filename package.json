@@ -1,24 +1,24 @@
 {
 	"name": "phogos",
 	"version": "1.0.0",
+	"repository": "git@github.com:bkiac/phogos.git",
+	"author": "bkiac <bkiac@pm.me>",
+	"license": "MIT",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"files": [
 		"dist"
 	],
-	"repository": "git@github.com:bkiac/phogos.git",
 	"scripts": {
 		"build": "tsx scripts/build.ts",
-		"test": "vitest",
-		"coverage": "vitest run --coverage",
-		"prettier": "prettier .",
-		"format:check": "yarn prettier --check",
-		"type:check": "tsc --emitDeclarationOnly false --noEmit",
 		"checks": "run-p *:check --continue-on-error --aggregate-output",
-		"format": "yarn prettier --write"
+		"coverage": "vitest run --coverage",
+		"format": "yarn prettier --write",
+		"format:check": "yarn prettier --check",
+		"prettier": "prettier .",
+		"test": "vitest",
+		"type:check": "tsc --emitDeclarationOnly false --noEmit"
 	},
-	"author": "bkiac <bkiac@pm.me>",
-	"license": "MIT",
 	"peerDependencies": {
 		"typescript": ">=4.6"
 	},
@@ -27,6 +27,7 @@
 		"esbuild": "^0.15.13",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.8.1",
+		"prettier-plugin-pkg": "^0.17.1",
 		"tsx": "^3.12.0",
 		"type-fest": "^3.4.0",
 		"typescript": "4.9.4",
