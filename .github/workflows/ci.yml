@@ -7,7 +7,7 @@ on:
   branches: [master]
 
 jobs:
- build:
+ checks:
   runs-on: ubuntu-latest
 
   steps:
@@ -15,4 +15,5 @@ jobs:
    - uses: actions/setup-node@v3
    - run: yarn --frozen-lockfile
    - run: yarn checks
+   - run: yarn test
    - run: yarn build
