@@ -13,6 +13,7 @@
 		"coverage": "vitest run --coverage",
 		"prettier": "prettier .",
 		"format:check": "yarn prettier --check",
+		"type:check": "tsc --emitDeclarationOnly false --noEmit",
 		"format": "yarn prettier --write"
 	},
 	"author": "bkiac <bkiac@pm.me>",
