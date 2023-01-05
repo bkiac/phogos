@@ -1,5 +1,5 @@
-import * as phogos from "./lib"
+import * as ergol from "./lib"
 
 export * from "./lib"
-export {phogos}
-export const ph = phogos
+export {ergol}
+export const r = ergol
