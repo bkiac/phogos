@@ -1,5 +1,4 @@
-import * as ergol from "./lib"
-
+import * as mod from "./lib"
 export * from "./lib"
-export {ergol}
-export const r = ergol
+export {mod as ergol, mod as r}
+export default mod
