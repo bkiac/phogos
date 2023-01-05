@@ -1,18 +1,18 @@
 import {describe, it, expect} from "vitest"
-import {call} from "./call"
+import {exec} from "./exec"
 
-describe("call", () => {
+describe("exec", () => {
 	describe("sync", () => {
 		it("should return value", () => {
 			const value = 1
-			const [v, e] = call(() => value)
+			const [v, e] = exec(() => value)
 			expect(v).toBe(value)
 			expect(e).toBeUndefined()
 		})
 
 		it("should return error", () => {
 			const error = new Error("message")
-			const [v, e] = call<number>(() => {
+			const [v, e] = exec<number>(() => {
 				throw error
 			})
 			expect(v).toBeUndefined()
@@ -26,14 +26,14 @@ describe("call", () => {
 	describe("async", () => {
 		it("should return value", async () => {
 			const value = 1
-			const [v, e] = await call(async () => value)
+			const [v, e] = await exec(async () => value)
 			expect(v).toBe(value)
 			expect(e).toBeUndefined()
 		})
 
 		it("should return error", async () => {
 			const error = new Error("message")
-			const [v, e] = await call(async () => {
+			const [v, e] = await exec(async () => {
 				throw error
 			})
 			expect(v).toBeUndefined()

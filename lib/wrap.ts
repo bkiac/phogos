@@ -1,5 +1,5 @@
 import type {ErrorHandlerOptions} from "./handle-error"
-import {call, callAsync, callSync} from "./call"
+import {exec, execAsync, execSync} from "./exec"
 import type {Result} from "./core"
 
 type Fn = (...args: any[]) => any
@@ -22,14 +22,14 @@ export function wrap<F extends Fn, E extends Error = Error>(
 ): (...args: Parameters<F>) => Result<ReturnType<F>, E>
 
 export function wrap<F extends Fn, E extends Error = Error>(fn: F, options?: ErrorHandlerOptions<E>) {
-	return (...args: Parameters<F>) => call(() => fn(...args), options)
+	return (...args: Parameters<F>) => exec(() => fn(...args), options)
 }
 
 export function wrapSync<F extends Fn, E extends Error = Error>(fn: F, options?: ErrorHandlerOptions<E>) {
-	return (...args: Parameters<F>): Result<ReturnType<F>> => callSync(() => fn(...args), options)
+	return (...args: Parameters<F>): Result<ReturnType<F>> => execSync(() => fn(...args), options)
 }
 
 export function wrapAsync<F extends AsyncFn, E extends Error = Error>(fn: F, options?: ErrorHandlerOptions<E>) {
 	return async (...args: Parameters<F>): Promise<Result<Awaited<ReturnType<F>>>> =>
-		callAsync(async () => fn(...args), options)
+		execAsync(async () => fn(...args), options)
 }
